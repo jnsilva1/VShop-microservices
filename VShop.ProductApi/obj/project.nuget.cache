@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "2/qeKrMe1vWBbKhw9BxWK7tKCAhhxsTAPXDrKIH8oDJZwO1xD9YQST9m7I3WH7m6NKN2+WYowT321+teWVsQkw==",
-  "success": false,
+  "dgSpecHash": "T6elVeaOa9VwFrjOt6eShSi492z3I5LC/qN70C/Wj9fXaFMtX15gISMAk52apnfft7HoFdzcT+TZ6za0aNXW7Q==",
+  "success": true,
   "projectFilePath": "C:\\Users\\josen\\Documents\\repos\\Workshop MicroServices\\VShop.ProductApi\\VShop.ProductApi.csproj",
-  "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "Não é possível carregar o índice de serviço para a origem https://pkgs.dev.azure.com/modernasistemas/_packaging/ModernaPackage/nuget/v3/index.json.",
-      "libraryId": "Microsoft.AspNetCore.OpenApi"
-    }
-  ]
+  "expectedPackageFiles": [
+    "C:\\Users\\josen\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
 }
