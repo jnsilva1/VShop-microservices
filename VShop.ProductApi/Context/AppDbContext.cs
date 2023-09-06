@@ -5,10 +5,12 @@ namespace VShop.ProductApi;
 public class AppDbContext : DbContext
 {
     const string DEFAULT_COLLATION = "utf8mb4";
+#pragma warning disable 8618
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
 
     }
+#pragma warning restore 8618
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
