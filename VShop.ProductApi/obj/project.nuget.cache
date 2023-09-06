@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "2/qeKrMe1vWBbKhw9BxWK7tKCAhhxsTAPXDrKIH8oDJZwO1xD9YQST9m7I3WH7m6NKN2+WYowT321+teWVsQkw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\josen\\Documents\\repos\\Workshop MicroServices\\VShop.ProductApi\\VShop.ProductApi.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "Não é possível carregar o índice de serviço para a origem https://pkgs.dev.azure.com/modernasistemas/_packaging/ModernaPackage/nuget/v3/index.json.",
+      "libraryId": "Microsoft.AspNetCore.OpenApi"
+    }
+  ]
+}
