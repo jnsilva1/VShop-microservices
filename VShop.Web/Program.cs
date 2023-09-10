@@ -8,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Incluinding http client factory
+builder.Services.AddHttpClient("ProductApi", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ServiceUri:ProductApi"]);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
