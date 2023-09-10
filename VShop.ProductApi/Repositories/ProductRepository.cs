@@ -17,7 +17,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<Product>> GetAll()
     {
-        return await context.Products.ToListAsync();
+        return await context.Products.Include(entity => entity.Category).ToListAsync();
     }
 
     public async Task<IEnumerable<Product>> GetProductsCategory()
@@ -28,7 +28,7 @@ public class ProductRepository : IProductRepository
     public async Task<Product> GetById(int id)
     {
 #pragma warning disable 8603
-        return await context.Products.Where(entity => entity.Id == id).FirstOrDefaultAsync();
+        return await context.Products.Include(entity => entity.Category).Where(entity => entity.Id == id).FirstOrDefaultAsync();
 #pragma warning restore 8603
     }
 
