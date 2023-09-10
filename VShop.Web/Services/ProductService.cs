@@ -17,11 +17,13 @@ public class ProductService : IProductService
     private readonly JsonSerializerOptions jsonSerializerOptions;
 
 
+#pragma warning disable 8618
     public ProductService(IHttpClientFactory clientFactory)
     {
         this.clientFactory = clientFactory;
         jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
+#pragma warning restore 8618
 
     public Task<IEnumerable<ProductViewModel>> GetAllProducts()
     {
