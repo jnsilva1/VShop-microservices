@@ -5,7 +5,7 @@ namespace VShop.ProductApi;
 
 public class MappingProfile : Profile
 {
-    protected MappingProfile()
+    public MappingProfile()
     {
         CreateMap<Category, CategoryDTO>().ReverseMap();
         CreateMap<Product, ProductDTO>().ReverseMap();

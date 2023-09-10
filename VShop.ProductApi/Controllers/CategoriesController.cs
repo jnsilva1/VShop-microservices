@@ -14,7 +14,7 @@ public class CategoriesController : ControllerBase
 
     private readonly ICategoryService _categoryService;
 
-    public CategoriesController(ICategoryService categoryService)
+    public CategoriesController(ICategoryService categoryService):base()
     {
         _categoryService = categoryService;
     }
@@ -39,7 +39,7 @@ public class CategoriesController : ControllerBase
         return Ok(value: categoriesDto);
     }
 
-    [HttpGet(template: "{id:int}", Name = "GetCategory")]
+    [HttpGet(template: "{id}", Name = "GetCategory")]
     public async Task<ActionResult<CategoryDTO>> Get(int id)
     {
         var categoryDto = await _categoryService.GetCategoryById(id: id);
@@ -63,7 +63,7 @@ public class CategoriesController : ControllerBase
         );
     }
 
-    [HttpPut(template: "{id: int}")]
+    [HttpPut(template: "{id}")]
     public async Task<ActionResult> Put(int id, [FromBody] CategoryDTO categoryDTO)
     {
         if (categoryDTO is null || id != categoryDTO.CategoryId) return BadRequest();
@@ -73,7 +73,7 @@ public class CategoriesController : ControllerBase
         return Ok(value: categoryDTO);
     }
 
-    [HttpDelete(template: "{id: int}")]
+    [HttpDelete(template: "{id}")]
     public async Task<ActionResult<CategoryDTO>> Delete(int id)
     {
         CategoryDTO categoryDTO = await _categoryService.GetCategoryById(id: id);
