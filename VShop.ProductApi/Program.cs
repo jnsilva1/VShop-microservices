@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VShop.ProductApi;
+using VShop.ProductApi.Repositories;
+using VShop.ProductApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 const string VARIABLE_PASSWORD = "ACCESS";
@@ -23,6 +25,10 @@ var mySqlConnection = builder.Configuration.GetConnectionString("Default")?.Repl
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
