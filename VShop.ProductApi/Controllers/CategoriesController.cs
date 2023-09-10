@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ public class CategoriesController : ControllerBase
 
     private readonly ICategoryService _categoryService;
 
-    public CategoriesController(ICategoryService categoryService):base()
+    public CategoriesController(ICategoryService categoryService) : base()
     {
         _categoryService = categoryService;
     }
@@ -36,6 +37,7 @@ public class CategoriesController : ControllerBase
         if (categoriesDto is null)
             return NotFound(value: "Categories not found");
 
+        AvoidCycleForCategoriesProduct(categories: categoriesDto);
         return Ok(value: categoriesDto);
     }
 
@@ -82,5 +84,14 @@ public class CategoriesController : ControllerBase
         await _categoryService.DeleteCategory(id: categoryDTO.CategoryId);
 
         return Ok(value: categoryDTO);
+    }
+
+    void AvoidCycleForCategoriesProduct(IEnumerable<CategoryDTO> categories)
+    {
+        for (int position = 0; position < categories.Count(); position++)
+        {
+            CategoryDTO category = categories.ElementAt(position);
+            category.Products?.ToList().ForEach(product => product.Category = null);
+        }
     }
 }
