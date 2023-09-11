@@ -1,41 +1,74 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+  "version": "2.0.0",
+  //   "tasks": [
+  //     {
+  //       "label": "build",
+  //       "command": "dotnet",
+  //       "type": "process",
+  //       "args": [
+  //         "build",
+  //         "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj",
+  //         "/property:GenerateFullPaths=true",
+  //         "/consoleloggerparameters:NoSummary"
+  //       ],
+  //       "problemMatcher": "$msCompile"
+  //     },
+  //     {
+  //       "label": "publish",
+  //       "command": "dotnet",
+  //       "type": "process",
+  //       "args": [
+  //         "publish",
+  //         "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj",
+  //         "/property:GenerateFullPaths=true",
+  //         "/consoleloggerparameters:NoSummary"
+  //       ],
+  //       "problemMatcher": "$msCompile"
+  //     },
+  //     {
+  //       "label": "watch",
+  //       "command": "dotnet",
+  //       "type": "process",
+  //       "args": [
+  //         "watch",
+  //         "run",
+  //         "--project",
+  //         "${workspaceFolder}/VShop.ProductApi/VShop.ProductApi.csproj"
+  //       ],
+  //       "problemMatcher": "$msCompile"
+  //     }
+  //   ],
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/VShop.Web/VShop.Web.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/VShop.Web/VShop.Web.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["watch", "run", "--project", "${workspaceFolder}/VShop.Web/VShop.Web.csproj"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
 }
