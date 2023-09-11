@@ -2,6 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using VShop.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Incluinding http client factory
-builder.Services.AddHttpClient("ProductApi", client =>
+builder.Services.AddHttpClient(name: HttpClientFactoryName.ProductApi, configureClient: client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["ServiceUri:ProductApi"]);
+    client.BaseAddress = new Uri(uriString: builder.Configuration["ServiceUri:ProductApi"]);
 });
 
 var app = builder.Build();
