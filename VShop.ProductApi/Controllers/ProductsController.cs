@@ -52,10 +52,10 @@ public class ProductsController : ControllerBase
         );
     }
 
-    [HttpPut(template: "{id}")]
-    public async Task<ActionResult> Put(int id, [FromBody] ProductDTO productDTO)
+    [HttpPut]
+    public async Task<ActionResult> Put([FromBody] ProductDTO productDTO)
     {
-        if (productDTO is null || id != productDTO.CategoryId) return BadRequest();
+        if (productDTO is null) return BadRequest();
 
         await _productService.UpdateProduct(productDTO: productDTO);
 
