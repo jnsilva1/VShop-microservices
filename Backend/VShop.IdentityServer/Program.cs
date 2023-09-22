@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using VShop.IdentityServer;
 using VShop.IdentityServer.Configuration;
 using VShop.IdentityServer.Data;
+using VShop.IdentityServer.SeedDatabase;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,8 @@ var builderIdentityServer = builder.Services
 
 builderIdentityServer.AddDeveloperSigningCredential();
 
+builder.Services.AddScoped<IDatabaseSeedInitializer, DatabaseIdentityServerInitializer>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -60,8 +63,21 @@ app.UseIdentityServer();
 
 app.UseAuthorization();
 
+SeedDatabaseIdentityServer(app: app);
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabaseIdentityServer(IApplicationBuilder app)
+{
+    using (IServiceScope serviceScope = app.ApplicationServices.CreateScope())
+    {
+        IDatabaseSeedInitializer? initRolesUsers = serviceScope.ServiceProvider.GetService<IDatabaseSeedInitializer>();
+
+        initRolesUsers?.InitializeSeedRoles();
+        initRolesUsers?.InitializeSeedUsers();
+    }
+}
