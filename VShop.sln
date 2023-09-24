@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VShop.ProductApi", "Backend\VShop.ProductApi\VShop.ProductApi.csproj", "{8346F2A6-E4D1-4AE9-B5B2-F7A32D4DDE75}"
+	ProjectSection(ProjectDependencies) = postProject
+		{592D0032-AC19-4196-96E9-02BAD7B54386} = {592D0032-AC19-4196-96E9-02BAD7B54386}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VShop.Web", "Frontend\VShop.Web\VShop.Web.csproj", "{1557FC73-F32E-4E52-8141-8EC638BB30DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{592D0032-AC19-4196-96E9-02BAD7B54386} = {592D0032-AC19-4196-96E9-02BAD7B54386}
+		{8346F2A6-E4D1-4AE9-B5B2-F7A32D4DDE75} = {8346F2A6-E4D1-4AE9-B5B2-F7A32D4DDE75}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{38F1CA9F-F877-43E3-8053-A100ED580C13}"
 EndProject
