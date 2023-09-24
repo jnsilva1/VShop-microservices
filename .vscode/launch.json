@@ -4,34 +4,14 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": ".NET Core Launch (web)",
-    //   "type": "coreclr",
-    //   "request": "launch",
-    //   "preLaunchTask": "build",
-    //   "program": "${workspaceFolder}/VShop.ProductApi/bin/Debug/net7.0/VShop.ProductApi.dll",
-    //   "args": [],
-    //   "cwd": "${workspaceFolder}/VShop.ProductApi",
-    //   "stopAtEntry": false,
-    //   "serverReadyAction": {
-    //     "action": "openExternally",
-    //     "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-    //   },
-    //   "env": {
-    //     "ASPNETCORE_ENVIRONMENT": "Development"
-    //   },
-    //   "sourceFileMap": {
-    //     "/Views": "${workspaceFolder}/Views"
-    //   }
-    // },
     {
-      "name": ".NET Core Launch (web)",
+      "name": ".NET Core Launch (Backend - Identity Server)",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/VShop.Web/bin/Debug/net6.0/VShop.Web.dll",
+      "program": "${workspaceFolder}/Backend/VShop.IdentityServer/bin/Debug/net7.0/VShop.IdentityServer.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/VShop.Web",
+      "cwd": "${workspaceFolder}/Backend/VShop.IdentityServer",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
@@ -41,13 +21,65 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
+        "/Views": "${workspaceFolder}/Backend/VShop.IdentityServer/Views"
       }
     },
     {
-      "name": ".NET Core Attach",
+      "name": ".NET Core Launch (Backend - API)",
       "type": "coreclr",
-      "request": "attach"
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Backend/VShop.ProductApi/bin/Debug/net7.0/VShop.ProductApi.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Backend/VShop.ProductApi",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Backend/VShop.ProductApi/Views"
+      }
+    },
+    {
+      "name": ".NET Core Launch (Frontend)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Frontend/VShop.Web/bin/Debug/net6.0/VShop.Web.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Frontend/VShop.Web",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Frontend/VShop.Web/Views"
+      }
+    }
+    // {
+    //   "name": ".NET Core Attach",
+    //   "type": "coreclr",
+    //   "request": "attach"
+    // }
+  ],
+  "compounds": [
+    {
+      "name": "Full VShop",
+      "configurations": [
+        ".NET Core Launch (Backend - Identity Server)",
+        ".NET Core Launch (Backend - API)",
+        ".NET Core Launch (Frontend)"
+      ],
+      "stopAll": true
     }
   ]
 }
