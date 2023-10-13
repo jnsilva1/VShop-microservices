@@ -11,6 +11,7 @@ using VShop.Web.Services.Contracts;
 
 namespace VShop.Web.Controllers;
 
+[Authorize(Roles = Role.Admin)]
 public class ProductsController : Controller
 {
     private readonly IProductService productService;
@@ -40,7 +41,6 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> CreateProduct(ProductViewModel productViewModel)
     {
         if (ModelState.IsValid)
@@ -67,7 +67,6 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> UpdateProduct(ProductViewModel productViewModel)
     {
         if (ModelState.IsValid)
@@ -82,7 +81,6 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    [Authorize]
     public async Task<IActionResult> DeleteProduct(int id)
     {
         var result = await productService.FindProductById(id: id, token: await GetTokenJWTAsync());
