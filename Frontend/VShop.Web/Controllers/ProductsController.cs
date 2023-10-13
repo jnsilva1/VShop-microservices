@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ public class ProductsController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var result = await productService.GetAllProducts();
+        var result = await productService.GetAllProducts(token: await GetTokenJWTAsync());
         if (result is null)
             return View("Error");
 
@@ -34,7 +35,7 @@ public class ProductsController : Controller
     [HttpGet]
     public async Task<IActionResult> CreateProduct()
     {
-        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(), dataValueField: "CategoryId", dataTextField: "Name");
+        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(token: await GetTokenJWTAsync()), dataValueField: "CategoryId", dataTextField: "Name");
         return View();
     }
 
@@ -44,21 +45,21 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
-            var result = await productService.CreateProduct(productViewModel: productViewModel);
+            var result = await productService.CreateProduct(productViewModel: productViewModel, token: await GetTokenJWTAsync());
             if (result != null)
                 return RedirectToAction(actionName: nameof(Index));
         }
 
-        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(), dataValueField: "CategoryId", dataTextField: "Name");
+        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(token: await GetTokenJWTAsync()), dataValueField: "CategoryId", dataTextField: "Name");
         return View(productViewModel);
     }
 
     [HttpGet]
     public async Task<IActionResult> UpdateProduct(int id)
     {
-        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(), dataValueField: "CategoryId", dataTextField: "Name");
+        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(token: await GetTokenJWTAsync()), dataValueField: "CategoryId", dataTextField: "Name");
 
-        var result = await productService.FindProductById(id: id);
+        var result = await productService.FindProductById(id: id, token: await GetTokenJWTAsync());
         if (result is null)
             return View("Error");
 
@@ -71,12 +72,12 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
-            var result = await productService.UpdateProduct(productViewModel: productViewModel);
+            var result = await productService.UpdateProduct(productViewModel: productViewModel, token: await GetTokenJWTAsync());
             if (result is not null)
                 return RedirectToAction(actionName: nameof(Index));
         }
 
-        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(), dataValueField: "CategoryId", dataTextField: "Name");
+        ViewBag.CategoryId = new SelectList(items: await categoryService.GetAllCategories(token: await GetTokenJWTAsync()), dataValueField: "CategoryId", dataTextField: "Name");
         return View(productViewModel);
     }
 
@@ -84,7 +85,7 @@ public class ProductsController : Controller
     [Authorize]
     public async Task<IActionResult> DeleteProduct(int id)
     {
-        var result = await productService.FindProductById(id: id);
+        var result = await productService.FindProductById(id: id, token: await GetTokenJWTAsync());
         if (result is null)
             return View("Error");
 
@@ -95,10 +96,15 @@ public class ProductsController : Controller
     [Authorize(Roles = Role.Admin)]
     public async Task<IActionResult> DeleteConfirmedProduct(int id)
     {
-        var result = await productService.DeleteProductById(id: id);
+        var result = await productService.DeleteProductById(id: id, token: await GetTokenJWTAsync());
         if (!result)
             return View("Error");
 
         return RedirectToAction(actionName: nameof(Index));
+    }
+
+    private async Task<string> GetTokenJWTAsync()
+    {
+        return await HttpContext.GetTokenAsync("access_token");
     }
 }

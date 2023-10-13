@@ -21,9 +21,10 @@ public class CategoryService : ICategoryService
         jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<IEnumerable<CategoryViewModel>> GetAllCategories()
+    public async Task<IEnumerable<CategoryViewModel>> GetAllCategories(string token)
     {
         var client = clientFactory.CreateClient(name: HttpClientFactoryName.ProductApi);
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(scheme: "Bearer", parameter: token);
 
         using (HttpResponseMessage response = await client.GetAsync(requestUri: apiEndpoint))
         {
